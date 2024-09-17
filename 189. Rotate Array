@@ -1,0 +1,30 @@
+package java_program;
+
+import java.util.*;;
+
+public class javaprogram5 {
+    public static void main(String[] args) {
+        int[] arr = { 1, 2, 3, 4, 5, 6, 7 };
+        int n = arr.length - 1;
+        int k = 3;
+        int s = 0;
+
+        reverseArray(arr, s, n);
+        reverseArray(arr, s, k - 1);
+        reverseArray(arr, k, n);
+
+        System.out.println(Arrays.toString(arr));
+
+    }
+
+    private static void reverseArray(int[] arr, int s, int n) {
+
+        while (s <= n) {
+            int temp = arr[s];
+            arr[s] = arr[n];
+            arr[n] = temp;
+            s++;
+            n--;
+        }
+    }
+}
