@@ -1,0 +1,32 @@
+package java_program;
+
+import java.util.*;
+
+public class javaprogram6 {
+    public static void main(String[] args) {
+
+        int[] arr = { 0, 1, 0, 3, 12 };
+        if (arr.length == 0 || arr.length == 1) {
+            System.out.println(Arrays.toString(arr));
+        } else {
+            int i = 0;
+            int j = 0;
+
+            for (int num : arr) {
+                if (num != 0) {
+                    swap(arr, i, j);
+                    i++;
+                }
+                j++;
+            }
+        }
+        System.out.println(Arrays.toString(arr));
+
+    }
+
+    private static void swap(int[] arr, int i, int j) {
+        int temp = arr[j];
+        arr[j] = arr[i];
+        arr[i] = temp;
+    }
+}
