@@ -1,0 +1,24 @@
+package java_program;
+
+public class javaprogram7 {
+    public static void main(String[] args) {
+        int[] arr = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+        int[] arr1 = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+
+        int n = arr.length;
+        int k = 8;
+
+        int ans = searchArray(arr, n - 1, k);
+        System.out.println("the index is : " + ans);
+
+    }
+
+    private static int searchArray(int[] arr, int n, int k) {
+
+        for (int i = 0; i <= n; i++) {
+            if (arr[i] == k)
+                return i;
+        }
+        return 0;
+    }
+}
