@@ -1,0 +1,77 @@
+package java_program;
+
+import java.util.Arrays;
+
+public class missingNumber {
+    public static void main(String[] args) {
+        int[] arr = { 0, 1, 2, 3, 4, 5, 6, 7, 9 };
+
+        // quickSort(arr, 0, arr.length - 1);
+
+        // System.out.println(Arrays.toString(arr));
+        // int temp = (int) (-1e9);
+        // for (int i = 0; i < arr.length; i++) {
+        // if (arr[i] != i) {
+        // temp = i;
+        // break;
+        // }
+
+        // }
+
+        // System.out.println(temp);\
+        int n = arr.length;
+        int temp = (n * (n + 1)) / 2;
+
+        int sum = 0;
+        for (int i = 0; i < arr.length; i++) {
+            sum += arr[i];
+        }
+
+        int ans = temp - sum;
+        System.out.println(ans);
+
+    }
+
+    private static void quickSort(int[] arr, int i, int j) {
+        if (i >= j)
+            return;
+        int low = i;
+        int high = j;
+
+        int pivot = arr[low];
+        int partition = divideArray(arr, low, high, pivot);
+
+        quickSort(arr, i, partition - 1);
+        quickSort(arr, partition + 1, j);
+    }
+
+    private static int divideArray(int[] arr, int low, int high, int pivot) {
+        int i = low;
+        int j = high;
+
+        while (i < j) {
+            while (arr[i] <= pivot && i < high) {
+                i++;
+            }
+            while (arr[j] >= pivot && j > low) {
+                j--;
+            }
+            if (i < j) {
+                swap(arr, i, j);
+            }
+        }
+
+        int temp = arr[j];
+        arr[j] = arr[low];
+        arr[low] = temp;
+
+        return j;
+
+    }
+
+    private static void swap(int[] arr, int i, int j) {
+        int temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
+}
