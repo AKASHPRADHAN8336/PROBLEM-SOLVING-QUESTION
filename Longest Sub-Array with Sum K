@@ -1,0 +1,37 @@
+class Solution {
+    // Function for finding maximum and value pair
+    public static int lenOfLongSubarr(int A[], int N, int K) {
+        // Complete the function
+        
+        int longesrArray = LongestSubArray(A, K, N);
+        // System.out.println(longesrArray);
+        return longesrArray;
+    }
+    
+    private static int LongestSubArray(int[] arr, int k, int n) {
+
+        Map<Integer, Integer> map = new HashMap<>();
+        int sum = 0;
+        int maxLen = 0;
+        for (int i = 0; i < n; i++) {
+            sum += arr[i];
+
+            if (sum == k) {
+                maxLen = Math.max(i + 1, maxLen);
+            }
+
+            int rem = sum - k;
+
+            if (map.containsKey(rem)) {
+                maxLen = Math.max(maxLen, i - map.get(rem));
+            }
+
+            if (!map.containsKey(sum)) {
+                map.put(sum, i);
+            }
+        }
+
+        // System.out.println(maxLen);
+        return maxLen;
+    }
+}
