@@ -1,0 +1,28 @@
+class Solution {
+    public int helper(int[] nums,int val,Stack<Integer> stack){
+        for(int i=0;i<nums.length;i++){
+            if(nums[i]!=val){
+                stack.add(nums[i]);
+            }
+        }
+        int temp=stack.size();
+        for(int i=0;i<temp;i++){
+            nums[i]=stack.pop();
+        }
+        return temp;
+    }
+    public int removeElement(int[] nums, int val) {
+        Stack<Integer> stack= new Stack<>();
+        // return helper(nums,val,stack);
+        int k=0;
+        for(int i=0;i<nums.length;i++){
+            if(nums[i]!=val){
+                stack.add(nums[i]);
+                nums[k]=nums[i];
+                k++;
+            }
+        }
+        return stack.size();
+    }
+
+}
