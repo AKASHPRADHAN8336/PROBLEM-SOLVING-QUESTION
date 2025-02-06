@@ -1,0 +1,30 @@
+class Solution {
+    int squarenum(int n){
+        int total=0;
+        while(n>0){
+             int rem=n%10;
+         total=total+(rem*rem);
+        n=n/10;
+        }
+        return total;
+       
+    }
+
+    public boolean isHappy(int n) {
+
+        int slow=n;
+        int fast=n;
+        do{
+            slow = squarenum(slow);
+            fast = squarenum(squarenum(fast));
+        }while(slow != fast);
+
+        if(slow == 1){
+            return true;
+        }
+        else{
+            return false;
+        }
+        
+    }
+}
