@@ -1,0 +1,47 @@
+class Solution {
+    
+    public static int longestArray(Integer[] arr){
+        int maxLen = Integer.MIN_VALUE;
+        
+        int l=0;
+        int r=0;
+        Map<Integer,Integer> mpp = new HashMap<>();
+        while(r<arr.length){
+            mpp.put(arr[r],mpp.getOrDefault(arr[r],0)+1);
+            if(mpp.size()>2){
+                mpp.put(arr[l],mpp.get(arr[l])-1);
+                if(mpp.get(arr[l]) == 0){
+                    mpp.remove(arr[l]);
+                }
+                l++;
+            }
+            if(mpp.size()<=2){
+                maxLen = Math.max(maxLen,r-l+1);
+            }
+            r++;
+        }
+        return maxLen;
+    }
+    public static int totalElements(Integer[] arr) {
+        // code here
+        
+        // int maxLen = Integer.MIN_VALUE;
+        
+        // for(int i=0;i<arr.length;i++){
+        //     Set<Integer> set = new HashSet<>();
+        //     for(int j=i;j<arr.length;j++){
+        //         set.add(arr[j]);
+        //         if(set.size()<=2){
+                    
+        //             maxLen = Math.max(maxLen,j-i+1);
+        //         }else{
+        //             break;
+        //         }
+        //     }
+        // }
+        // return maxLen;
+        
+        
+        return longestArray(arr);
+    }
+}
