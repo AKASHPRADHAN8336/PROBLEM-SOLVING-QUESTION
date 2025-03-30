@@ -1,0 +1,27 @@
+class Solution {
+    public static HashSet<List> uniqueSubSet(int[] arr, HashSet<List> set, List<Integer> internal) {
+        if (arr.length == 0) {
+            ArrayList<Integer> list = new ArrayList<>(internal);
+
+            set.add(list);
+            return set;
+        }
+        internal.add(arr[0]);
+        uniqueSubSet(Arrays.copyOfRange(arr, 1, arr.length), set, internal);
+        internal.remove(internal.size() - 1);
+        uniqueSubSet(Arrays.copyOfRange(arr, 1, arr.length), set, internal);
+
+        return set;
+    }
+    public List<List<Integer>> subsetsWithDup(int[] arr) {
+          List<List<Integer>> outer = new ArrayList<>();
+        List<Integer> internal = new ArrayList<>();
+        HashSet<List> set = new HashSet<>();
+        Arrays.sort(arr);
+       HashSet<List> set1 = uniqueSubSet(arr, set, internal);
+        for(List nums:set1 ){
+            outer.add(nums);
+        }
+        return outer;
+    }
+}
