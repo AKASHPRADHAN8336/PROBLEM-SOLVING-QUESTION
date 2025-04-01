@@ -1,0 +1,27 @@
+class Solution {
+    public void subArray(int idx , int[] candidate,int target,List<List<Integer>> outer,List<Integer> internal){
+        if(idx==candidate.length){
+            if(target == 0){
+                outer.add(new ArrayList<>(internal));
+            }
+            return;
+        }
+
+        if(target>=candidate[idx]){
+            internal.add(candidate[idx]);
+            subArray(idx,candidate,target-candidate[idx],outer,internal);
+            internal.remove(internal.size()-1);
+        }
+        subArray(idx+1,candidate,target,outer,internal);
+    }
+
+    
+
+    
+    public List<List<Integer>> combinationSum(int[] candidates, int target) {
+      
+        List<List<Integer>> list = new ArrayList<>();
+        subArray(0,candidates,target,list,new ArrayList<>());
+        return list;
+    }
+}
