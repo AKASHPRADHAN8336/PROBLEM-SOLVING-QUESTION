@@ -1,0 +1,30 @@
+class Solution {
+     public static int fact(int n) {
+        if (n == 2)
+            return 2;
+        return n * fact(n - 1);
+    }
+
+    public static String findNthString(String str, int k) {
+        int i = 0;
+        int n = str.length();
+        if (k == 1)
+            return str;
+        if (k == 2 && n == 2)
+            return str.charAt(1) + "" + str.charAt(0);
+        int a = k;
+        int p = fact(n) / n;
+        while (a > p) {
+            a -= p;
+            i++;
+        }
+        return str.charAt(i) + "" + findNthString(str.substring(0, i) + str.substring(i + 1), a);
+    }
+    public String getPermutation(int n, int k) {
+        String str = "";
+        for(int i = 1; i <= n ; i++) {
+            str += i;
+        } 
+        return findNthString(str, k);
+    }
+}
