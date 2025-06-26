@@ -1,0 +1,29 @@
+package string;
+
+public class reverse_a_string {
+
+    public static String helper(String str){
+        String[] s = str.split("\\s+");
+
+        StringBuilder newStr = new StringBuilder();
+
+        for(int i=s.length-1;i>=0;i--){
+            newStr.append(s[i]);
+            newStr.append(" ");
+        }
+
+        return newStr.toString().trim();
+        
+    }
+
+    public static void main(String[] args) {
+        String str="  hello my name   is akash";
+
+
+        
+
+
+        System.out.println(helper(str));
+    }
+    
+}
