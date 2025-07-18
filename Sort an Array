@@ -1,0 +1,44 @@
+class Solution {
+    public static void swap(int[] arr,int i,int j){
+        int temp=arr[i];
+        arr[i]=arr[j];
+        arr[j]=temp;
+    }
+
+
+    public static void helper(int[] arr,int i,int j){
+        if(i>j) return;
+        int start=i;
+        int end=j;
+        int pivot=start+(end-start)/2;
+        
+        int mid=arr[pivot];
+        while(start<=end){
+            
+            while(arr[start]<mid){
+                start++;
+            }
+            while(arr[end]>mid){
+                end--;
+            }
+            if(start<=end){
+                swap(arr,start,end);
+                 start++;
+                end--;
+            }        
+        }
+        // if(end>start){
+
+            // System.out.println("kkkkkk");
+            helper(arr,i,end);
+            // System.out.println(Arrays.toString(arr));
+            helper(arr,start,j);
+            // System.out.println(Arrays.toString(arr));
+        // }
+    }
+    public int[] sortArray(int[] arr) {
+        helper(arr,0,arr.length-1);
+
+        return arr;
+    }
+}
