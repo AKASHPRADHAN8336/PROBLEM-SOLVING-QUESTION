@@ -1,0 +1,41 @@
+class Solution {
+    public int helper(int[][]arr,int r,int c,int[][]dp){
+        if(r<0 || c<0) return 0;
+        if(r == 0 && c == 0) return 1;
+        if(arr[r][c] ==1) return 0;
+        if(dp[r][c] !=-1) return dp[r][c];
+        int up=helper(arr,r-1,c,dp);
+        int left=helper(arr,r,c-1,dp);
+        return dp[r][c]=up + left;
+    }
+    public int uniquePathsWithObstacles(int[][] obstacleGrid) {
+        int r=obstacleGrid.length;
+        int c=obstacleGrid[0].length;
+        int[][] dp = new int[r][c];
+
+        for(int[] arr:dp){
+            Arrays.fill(arr,-1);
+        }
+
+        // return helper(obstacleGrid,r-1,c-1,dp);
+
+        for(int i=0;i<r;i++){
+            for(int j=0;j<c;j++){
+                if(i==0 && j==0) dp[i][j]=1;
+                else if(obstacleGrid[i][j] == 1) dp[i][j]=0;
+                else{
+                    int up=0;
+                    int left=0;
+                    if(i>0) up=dp[i-1][j];
+                    if(j>0) left=dp[i][j-1];
+                    dp[i][j]=left+up;
+                }
+
+                
+            }
+        }
+
+        return dp[r-1][c-1];
+        
+    }
+}
