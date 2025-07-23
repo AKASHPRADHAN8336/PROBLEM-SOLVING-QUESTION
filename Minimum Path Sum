@@ -1,0 +1,38 @@
+class Solution {
+    public int helper(int[][] grid,int r,int c,int[][] dp){
+
+        if(r == 0 && c == 0) return grid[0][0];
+        if(r<0 || c<0) return (int)(1e9);
+        if(dp[r][c]!=-1) return dp[r][c];
+        int up=grid[r][c]+helper(grid,r-1,c,dp);
+        int left=grid[r][c]+helper(grid,r,c-1,dp);
+        return dp[r][c]=Math.min(left,up);
+    }
+    public int minPathSum(int[][] grid) {
+        int r=grid.length;
+        int c=grid[0].length;
+        int[][] dp=new int[r][c];
+        for(int[] arr:dp){
+            Arrays.fill(arr,-1);
+        }
+        // return helper(grid,r-1,c-1,dp);
+        for(int i=0;i<r;i++){
+            for(int j=0;j<c;j++){
+                if(i == 0 && j==0) dp[0][0]=grid[0][0];
+                else{
+
+                    int up=grid[i][j];
+                    int left=grid[i][j];
+                    if(i>0) up=up+dp[i-1][j];
+                    else up=up+(int)(1e9);
+                    if(j>0) left=left+dp[i][j-1];
+                    else left=left+(int)(1e9);
+                    dp[i][j]=Math.min(left,up);   
+                }
+            }
+        }
+
+        return dp[r-1][c-1];
+        
+    }
+}
