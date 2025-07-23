@@ -1,0 +1,25 @@
+class Solution {
+
+
+    public int helper(int[] nums, int target,int ind,int currentsum){
+        if(ind<0){
+            return currentsum == target ? 1:0;
+        }
+        
+
+
+        int add=helper(nums,target,ind-1,currentsum+nums[ind]);
+        int sub=helper(nums,target,ind-1,currentsum-nums[ind]);
+
+        return add+sub;
+    }
+    public int findTargetSumWays(int[] nums, int target) {
+
+        int currentsum=0;
+        int n=nums.length;
+        return helper(nums,target,n-1,currentsum);
+
+        // return cnt;
+        
+    }
+}
