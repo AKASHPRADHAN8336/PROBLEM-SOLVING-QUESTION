@@ -1,0 +1,51 @@
+class Solution {
+    public int helper(int[][] matrix,int r,int c,int[][] dp){
+        if(c<0 || c>=matrix[0].length) return (int)(1e9);
+        if(r==0) return matrix[0][c];
+        if(dp[r][c]!=-1) return dp[r][c];
+        int down=matrix[r][c]+helper(matrix,r-1,c,dp);
+        int left=matrix[r][c]+helper(matrix,r-1,c-1,dp);
+        int right=matrix[r][c]+helper(matrix,r-1,c+1,dp);
+        return dp[r][c]=Math.min(down,Math.min(left,right));
+    }
+    public int minFallingPathSum(int[][] matrix) {
+        int r=matrix.length;
+        int c=matrix[0].length;
+        // int max=(int)(1e9);
+        int[][] dp=new int[r][c];
+        for(int[] arr:dp) Arrays.fill(arr,-1);
+        // for(int i=0;i<c;i++){
+        //     int ans=helper(matrix,r-1,i,dp);
+        //     max=Math.min(max,ans);
+        // }
+        // return max;
+
+
+        for(int j=0;j<c;j++){
+            dp[0][j]=matrix[0][j];
+        }
+
+        for(int i=1;i<r;i++){
+            for(int j=0;j<c;j++){
+                int down=matrix[i][j]+dp[i-1][j];
+                int left=matrix[i][j];
+                int right=matrix[i][j];
+                if(j-1>=0) left=left+dp[i-1][j-1];
+                else left=left+(int)(1e9);
+                if(j+1<c) right+=dp[i-1][j+1];
+                else right+=(int)(1e9);
+
+                dp[i][j]=Math.min(down,Math.min(left,right));
+            }
+
+        }
+
+
+        int maxi=dp[r-1][0];
+        for(int a=1;a<c;a++){
+            maxi=Math.min(maxi,dp[r-1][a]);
+        }
+
+        return maxi;
+    }
+}
