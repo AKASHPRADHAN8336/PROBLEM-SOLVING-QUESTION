@@ -1,0 +1,23 @@
+class Solution {
+    public void helper(int[] nums, int target,int low,int high,int[] newArr){
+        if(low>high) return;
+        int mid=low+(high-low)/2;
+        if(nums[mid] == target){
+            if(newArr[0] == -1 || newArr[0]>mid) newArr[0]=mid;
+            if(newArr[1] == -1 || newArr[1]<mid) newArr[1]=mid;
+            helper(nums,target,low,mid-1,newArr);
+            helper(nums,target,mid+1,high,newArr);
+        }else if(target<nums[mid]){
+            helper(nums,target,low,mid-1,newArr);
+        }else{
+            helper(nums,target,mid+1,high,newArr);
+        }
+    }
+    public int[] searchRange(int[] nums, int target) {
+        int[] newArr = new int[]{-1,-1};
+        int low=0;
+        int high=nums.length-1;
+        helper(nums,target,low,high,newArr);
+        return newArr;
+    }
+}
