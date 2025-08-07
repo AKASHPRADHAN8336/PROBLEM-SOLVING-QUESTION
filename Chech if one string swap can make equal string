@@ -1,0 +1,18 @@
+class Solution {
+    public boolean areAlmostEqual(String s1, String s2) {
+
+        if(s1.length()!=s2.length()) return false;
+        int[] ind = new int[3];
+        HashMap<Integer,Character> mpp = new HashMap<>();
+        int cnt=0;
+        int j=0;
+        for(int i=0;i<s1.length();i++){
+            if(s1.charAt(i) != s2.charAt(i)){
+                 cnt++;
+                 if(j<=1) ind[j++]=i;
+            }
+        } 
+        if((cnt==2 && s1.charAt(ind[0]) == s2.charAt(ind[1]) &&s1.charAt(ind[1]) == s2.charAt(ind[0]) )|| (cnt==0 && s1.charAt(ind[0]) == s2.charAt(ind[0]) &&s1.charAt(ind[0]) == s2.charAt(ind[0]))) return true;
+        else return false; 
+    }
+}
