@@ -1,0 +1,47 @@
+lass Solution {
+
+
+    public char[] swap(char[] arr,int i,int k){
+        // String str = new String(ch);
+        // StringBuilder sb = new StringBuilder(str);
+        // sb.reverse(i,i+1);
+
+        // char temp=arr[a];
+        // arr[a]=arr[b];
+        // arr[b]=temp;
+
+        System.out.println(Arrays.toString(arr));
+        StringBuilder sb = new StringBuilder(new String(arr));
+        String reverse = new StringBuilder(sb.substring(i, i+k)).reverse().toString();
+        System.out.println(reverse);
+        sb.replace(i,i+k, reverse);
+        return sb.toString().toCharArray();
+
+
+        // int last=Math.min(i+k-1,arr.length-1);
+        // while(i<last){
+        // char temp=arr[i];
+        // arr[i]=arr[last];
+        // arr[last]=temp;
+        // i++;
+        // last--;
+        // }
+    }
+    public String reverseStr(String s, int k) {
+
+
+        char[] ch=s.toCharArray();
+
+        
+
+        for(int i=0;i<ch.length;i+=2*k){
+            ch =swap(ch,i,k);
+            System.out.print("yo.  ");
+            System.out.println(Arrays.toString(ch));
+
+        }
+
+        String str = new String(ch);
+       return str;
+    }
+}
