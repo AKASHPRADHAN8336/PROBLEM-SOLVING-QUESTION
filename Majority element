@@ -1,0 +1,28 @@
+class Solution {
+    public int majorityElement(int[] nums) {
+
+
+        int cnt=0;
+
+        int n = nums.length;
+        int i=0;
+        int ele=0;
+
+        while(i<n){
+            if(cnt==0){
+                ele=nums[i];
+                cnt++;
+                
+            }else if(ele!=nums[i]){
+                cnt--;
+            }else{
+                cnt++;
+                
+            }
+            i++;
+        }
+
+        return ele;
+        
+    }
+}
