@@ -1,0 +1,115 @@
+class Solution {
+
+
+
+    public void helper(int[] nums){
+        int maxProduct=1;
+        int n=nums.length;
+        // HashSet<Integer> zero = new HashSet<>();
+        // boolean iszero=false;
+        int zerocount=0;
+
+        // int[] prefix = new int[n];
+        int zero=-1;
+        int product=1;
+        // boolean twozero=false;
+
+
+       
+
+
+        for(int i=0;i<n;i++){
+            if(nums[i] == 0){
+                zero=i;
+                zerocount++;
+            }else{
+                product=product*nums[i];
+
+            // prefix[i]=product;
+
+            // if(product == 0) product = 1;
+            }
+            // System.out.println(Arrays.toString(prefix));
+        }
+
+         for (int i = 0; i < n; i++) {
+            if (zerocount > 1) {
+                
+                nums[i] = 0;
+            } else if (zerocount == 1) {
+                
+                nums[i] = (nums[i] == 0) ?product : 0;
+            } else {
+                
+                nums[i] = product / nums[i];
+            }
+        }
+
+        
+
+
+
+
+
+
+
+
+        // if(twozero){
+        //     for(int i=0;i<n;i++){
+        //         nums[i]=0;
+        //     }
+        // }else{
+           
+
+        //     for(int i=0;i<n;i++){
+                
+        //         if(!zero.contains(i)){
+        //             System.out.println(maxProduct);
+        //             maxProduct*=nums[i];
+                    
+        //         }
+                
+        //     }
+             
+        //     for(int i=0;i<n;i++){
+        //     if(iszero){
+        //         if(zero.contains(i)){
+                    
+        //             nums[i]=maxProduct;
+
+        //         }else{
+        //             nums[i]=0;
+        //         }
+        //     }else{
+        //         int temp=prefix[n-1]/nums[i];
+        //         nums[i]=temp;
+        //     }
+        // }
+        // }
+
+        
+    }
+
+    public int[] productExceptSelf(int[] nums) {
+        // int[] output = new int[nums.length];
+        // for (int i = 0; i < nums.length; i++) {
+        //     output[i] = 1;
+        // }
+
+        // int left = 1;
+        // for (int i = 0; i < nums.length; i++) {
+        //     output[i] *= left;
+        //     left *= nums[i];
+        // }
+
+        // int right = 1;
+        // for (int i = nums.length - 1; i >= 0; i--) {
+        //     output[i] *= right;
+        //     right *= nums[i];
+        // }
+
+        // return output;       
+        helper(nums);
+        return nums; 
+    }
+}
