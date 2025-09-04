@@ -1,0 +1,75 @@
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+    public ListNode removeNthFromEnd(ListNode head, int n) {
+       
+        // int i=1;
+        // ListNode dummy = new ListNode(-1);
+        // dummy.next=head;
+        // ListNode prev=dummy;
+        //  ListNode curr = dummy;
+        // if(head == null) return null;
+        // if(head.next == null && n == 1) return null;
+        // while(i<=n){
+        //     curr=curr.next;  
+        //     i++;
+        // }
+        // while(curr.next!=null){
+        //     curr=curr.next;
+        //     prev=prev.next;
+        // }
+        // prev.next = prev.next.next;
+        // return dummy.next;
+
+
+        ListNode curr=head;
+        curr=helper(head,n);
+        return curr;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public ListNode helper(ListNode head,int k){
+        if(head== null) return null;
+        if(head.next==null && k==1) return null;
+        ListNode dummy=new ListNode(-1);
+        dummy.next=head;
+        ListNode prev=dummy;
+        ListNode curr = head;
+        int n=0;
+        while(curr!=null){
+            n++;
+            curr=curr.next;
+        }
+        int temp=n-k;
+        int b=0;
+        ListNode start=head;
+        while(start!=null && b<temp ){
+            b++;
+            prev=prev.next;
+            start=start.next;
+        }
+        prev.next=prev.next.next;
+        return dummy.next;
+    }
+}
