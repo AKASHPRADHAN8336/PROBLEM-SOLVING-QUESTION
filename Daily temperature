@@ -1,0 +1,27 @@
+class Solution {
+    public int[] dailyTemperatures(int[] temperature) {
+
+        Stack<Integer> stack=new Stack<>();
+
+
+        int n=temperature.length;
+        int[] newArr=new int[n];
+        int k=n-1;
+
+        for(int i=n-1;i>=0;i--){
+            while(!stack.isEmpty() && temperature[stack.peek()] <= temperature[i]){
+                stack.pop();
+            }
+
+            if(stack.isEmpty()){
+                newArr[i]=0;
+            }else{
+                newArr[i]=stack.peek()-i;
+            }
+            stack.push(i);
+        }
+
+        return newArr;
+        
+    }
+}
