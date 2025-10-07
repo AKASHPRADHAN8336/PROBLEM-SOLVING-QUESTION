@@ -1,0 +1,51 @@
+class Solution {
+    public int helper(int[] coins,int amount,int idx,int[][] dp){
+        if(idx == 0){
+            if(amount%coins[0] ==0) return amount/coins[0];
+            return (int)(1e9);
+        }
+        if(dp[idx][amount]!=-1) return dp[idx][amount];
+
+        int take=(int)(1e9);
+        if(coins[idx]<=amount) take = 1+helper(coins,amount-coins[idx],idx,dp);
+        int notTake=0+helper(coins,amount,idx-1,dp);
+
+        return dp[idx][amount]=Math.min(take,notTake);
+    }
+    public int coinChange(int[] coins, int amount) {
+        int n=coins.length;
+        if(n==1){
+            if(amount%coins[0] ==0) return amount/coins[0];
+            return -1;
+        }
+
+        int[][] dp = new int[n][amount+1];
+        for(int[] a:dp) Arrays.fill(a,-1);
+        // int ans=helper(coins,amount,n-1,dp);
+        // // ans == (int)(1e9)?return -1:return ans;
+        // if(ans==(int)(1e9)) return -1;
+        // else return ans;
+
+
+        for(int t=0;t<=amount;t++){
+            if(t%coins[0] ==0) dp[0][t]= t/coins[0];
+            else dp[0][t]=(int)(1e9);
+            
+        }
+        for(int idx=1;idx<n;idx++){
+            for(int target=0;target<=amount;target++){
+                int take=(int)(1e9);
+                if(coins[idx]<=target) take = 1+dp[idx][target-coins[idx]];
+                int notTake=0+dp[idx-1][target];
+                dp[idx][target]=Math.min(take,notTake);
+
+            }
+        
+        
+        }
+
+        if(dp[n-1][amount]==(int)(1e9)) return -1;
+        else return dp[n-1][amount];
+        // return dp[n-1][amount];
+    }
+}
