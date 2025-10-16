@@ -1,0 +1,48 @@
+class Solution {
+    public boolean canJump(int[] nums) {
+        int n = nums.length;
+        int reachable = 0;
+        
+        for(int i=0;i<n;++i)
+        {
+            if(reachable < i)
+                return false;
+            reachable = Math.max(reachable,i+nums[i]);
+        }
+        return true;  
+        
+    }
+
+
+
+    public boolean helper(int[] nums,int idx){
+        if(nums[idx] == 0) return false;
+
+        if(idx<0) return false;
+        if(idx==0) return true;
+
+        
+
+
+        for(int i=1;i<=idx;i++){
+           if(helper(nums,idx-i)) return true;
+        }
+
+        return false;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
