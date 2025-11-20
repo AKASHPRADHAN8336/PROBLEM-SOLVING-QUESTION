@@ -1,0 +1,57 @@
+class Solution {
+    
+    
+    
+    public void dfs(ArrayList<ArrayList<Integer>> adj,boolean[] vis,Stack<Integer> stack,int V,int node){
+        
+        vis[node]=true;
+        
+        for(Integer it:adj.get(node)){
+            if(!vis[it]){
+                dfs(adj,vis,stack,V,it);
+            }
+        }
+        
+        stack.push(node);
+        
+    }
+    public ArrayList<Integer> topoSort(int V, int[][] edges) {
+        // code here
+        
+        boolean[] vis=new boolean[V];
+        
+            ArrayList<ArrayList<Integer>> adj=new ArrayList<>();
+            
+            for(int i=0;i<V;i++){
+                adj.add(new ArrayList<>());
+            }
+            
+            
+            for(int i=0;i<edges.length;i++){
+                int v=edges[i][0];
+                int u=edges[i][1];
+                
+                adj.get(v).add(u);
+                
+            }
+            
+            Stack<Integer> stack=new Stack<>();
+        
+        for(int i=0;i<V;i++){
+            if(!vis[i]){
+                dfs(adj,vis,stack,V,i);
+            }
+        }
+        
+        
+        ArrayList<Integer> ans=new ArrayList<>();
+        
+        int size=stack.size();
+        
+        for(int i=0;i<size;i++){
+            ans.add(stack.pop());
+        }
+        
+        return ans;
+    }
+}
