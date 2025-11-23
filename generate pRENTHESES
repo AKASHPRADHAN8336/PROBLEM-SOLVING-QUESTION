@@ -1,0 +1,46 @@
+class Solution {
+
+
+    public void helper(List<String> ans,StringBuilder sb,int inner,int outer){
+
+        if(inner<0) return;
+
+        if(outer == 0){
+            ans.add(sb.toString());
+            return;
+        }
+
+
+        if(inner>0){
+
+            sb.append("(");
+            helper(ans,sb,inner-1,outer);
+            sb.deleteCharAt(sb.length()-1);
+        }
+
+
+        if(outer>inner){
+
+            sb.append(")");
+            helper(ans,sb,inner,outer-1);
+            sb.deleteCharAt(sb.length()-1);
+
+        }
+
+    }
+    public List<String> generateParenthesis(int n) {
+
+        List<String> ans=new ArrayList<>();
+
+        StringBuilder sb=new StringBuilder();
+
+        int inner=n;
+        int outer=n;
+
+
+        helper(ans,sb,inner,outer);
+
+        return ans;
+        
+    }
+}
