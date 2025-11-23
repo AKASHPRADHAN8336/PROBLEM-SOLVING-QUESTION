@@ -1,0 +1,47 @@
+class Solution {
+
+
+    public boolean isPal(String s,int i,int j){
+        while(i<j){
+            if(s.charAt(i++) != s.charAt(j--)) return false;
+            
+        }
+
+        return true;
+    }
+
+
+
+    public void helper(String s,List<List<String>> ans,List<String> arr,int n){
+
+        if(n==s.length()){
+            ans.add(new ArrayList<>(arr));
+            return;
+        }
+
+
+        for(int i=n;i<s.length();i++){
+            if(isPal(s,n,i)){
+                arr.add(s.substring(n,i+1));
+                helper(s,ans,arr,i+1);
+                arr.remove(arr.size()-1);
+            }
+        }
+
+    }
+    public List<List<String>> partition(String s) {
+        
+        List<List<String>> ans=new ArrayList<>();
+
+        List<String> arr=new ArrayList<>();
+
+
+       
+
+
+        helper(s,ans,arr,0);
+
+
+        return ans;
+    }
+}
