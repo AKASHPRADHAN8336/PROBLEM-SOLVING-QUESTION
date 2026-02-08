@@ -1,0 +1,30 @@
+class Solution {
+
+
+    public int helper(int[] nums,int k,int ind){
+        if(ind<0) return 0;
+        int current_sum=0;
+        int count=0;
+
+
+
+        for(int i =ind;i>=0;i--){
+            current_sum+=nums[i];
+            if(current_sum==k){
+                count++;
+            }
+        }
+
+
+        return count+helper(nums,k,ind-1);
+    }
+    public int subarraySum(int[] nums, int k) {
+
+
+        int ans = helper(nums,k,nums.length-1);
+
+
+        return ans;
+        
+    }
+}
