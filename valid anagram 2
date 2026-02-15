@@ -1,0 +1,29 @@
+class Solution {
+    public boolean isAnagram(String s, String t) {
+
+
+        int n1 = s.length();
+        int n2 = t.length();
+
+        if(n1!=n2) return false;
+
+
+        int[] character_cnt=new int[26];
+
+        for(int i=0;i<n1;i++){
+            char s1 = s.charAt(i);
+            char s2 = t.charAt(i);
+
+            character_cnt[s1-'a']++;
+            character_cnt[s2-'a']--;
+        }
+
+
+        for(int i=0;i<character_cnt.length;i++){
+            if(character_cnt[i]!=0) return false;
+        }
+
+        return true;
+        
+    }
+}
